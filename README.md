@@ -1,5 +1,9 @@
 # jenkins-cli
 
+``` sh
+npm i -g @zf/jenkins-cli
+```
+
 ## projects
 
 ```sh
