@@ -1,6 +1,6 @@
 {
   "name": "@zf/jenkins-cli",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "jenkins on commandline",
   "main": "index.js",
   "directories": {
@@ -17,6 +17,7 @@
   "dependencies": {
     "cli-table2": "^0.2.0",
     "fresh-promise": "^0.0.3",
+    "global-tunnel-ng": "^2.1.1",
     "http-errors": "^1.6.2",
     "humanize-duration": "^3.12.1",
     "lodash": "^4.17.5",

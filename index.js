@@ -14,6 +14,15 @@ const trimLeft = (char, str) => {
     return str
 }
 
+const trimRight = (char, str) => {
+    while(str.endsWith(char)) {
+        str = str.substr(0, str.length - 1)
+    }
+    return str
+}
+
+const flatten = arrays => [].concat(...arrays)
+
 const parseArgv = argv => {
     let [node, script, ...rest] = argv
     let kwargs = {}
@@ -103,10 +112,20 @@ const commands = {
 
     async last ({url}, ...name) {
         let jenkins = new Jenkins({url: url})
-        let project = await jenkins.getProject(...name)
-        assert(project.lastStableBuild && project.lastStableBuild.number, 'no stable build available')
-        let build = await jenkins.getBuild(...name, project.lastStableBuild.number)
-        return {Number: build.number, Time: new Date(build.timestamp).toLocaleString(), Duration: humanizeDuration(build.duration)}
+        let build = await jenkins.lastBuild(...name)
+        return {
+            Number: build.number,
+            Result: build.building ? 'Building' : build.result,
+            Time: new Date(build.timestamp).toLocaleString(),
+            Duration: humanizeDuration(build.duration),
+            Changes: flatten(build.changeSets.map(({items})=> items.map(({authorEmail, comment, date}) => `${new Date(date).toLocaleString()} <${authorEmail}> ${trimRight('\n', comment)}`).join('\n'))).join('\n')
+        }
+    },
+
+    async output ({url}, ...name) {
+        let jenkins = new Jenkins({url: url})
+        let build = await jenkins.lastBuild(...name)
+        console.log(await jenkins.output(...name, build.number))
     },
 
     async dump ({url}, ...name) {
@@ -188,6 +207,12 @@ const main = async () => {
     let availableCommands = Object.keys(commands).join('\n')
     assert(command, `avaialble commands:\n${availableCommands}`)
     assert(commands[command], `'${command}' is not defined, available commands:\n${availableCommands}`)
+
+    if (process.env.http_proxy) {
+        let {hostname, port} = parse(process.env.http_proxy)
+        require('global-tunnel-ng').initialize({host: hostname, port})
+    }
+
     let result = await commands[command].apply(null, [kwargs, ...args])
 
     if (result) {

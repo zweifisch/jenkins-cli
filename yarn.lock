@@ -31,6 +31,13 @@ fresh-promise@^0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/fresh-promise/-/fresh-promise-0.0.3.tgz#cfc7e974fb5ac0d28c474c854a496a901fcb8ab2"
 
+global-tunnel-ng@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/global-tunnel-ng/-/global-tunnel-ng-2.1.1.tgz#dab824432260b6dcb70d173b78288e2fa6e0b880"
+  dependencies:
+    lodash "^4.17.0"
+    tunnel "^0.0.4"
+
 http-errors@^1.6.2:
   version "1.6.2"
   resolved "https://registry.yarnpkg.com/http-errors/-/http-errors-1.6.2.tgz#0a002cc85707192a7e7946ceedc11155f60ec736"
@@ -58,7 +65,7 @@ lodash@^3.10.1:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
-lodash@^4.17.5:
+lodash@^4.17.0, lodash@^4.17.5:
   version "4.17.5"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
 
@@ -109,6 +116,10 @@ tough-cookie@^2.3.4:
   resolved "https://registry.yarnpkg.com/tough-cookie/-/tough-cookie-2.3.4.tgz#ec60cee38ac675063ffc97a5c18970578ee83655"
   dependencies:
     punycode "^1.4.1"
+
+tunnel@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/tunnel/-/tunnel-0.0.4.tgz#2d3785a158c174c9a16dc2c046ec5fc5f1742213"
 
 uuid@^3.2.1:
   version "3.2.1"

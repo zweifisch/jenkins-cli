@@ -19,6 +19,9 @@ jenkins list <partialname>
 # enable/disable
 jenkins enable <project>
 jenkins disable <project>
+
+# get project defination
+jenkins dump <project>
 ```
 
 ## builds
@@ -27,11 +30,14 @@ jenkins disable <project>
 # trigger build
 jenkins build <project>
 
+# get last build of project
+jenkins last <project>
+
 # list builds of project
 jenkins builds <project>
 
-# get project defination
-jenkins dump <project>
+# get console output
+jenkins output <project> <build>
 ```
 
 ## artifacts
